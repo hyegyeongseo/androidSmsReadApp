@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MySmsReadApp</string>
+    <string name="sms_data">Saving messages</string>
+</resources>
