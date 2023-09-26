@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.mysmsreadapp.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.sql.Timestamp
@@ -89,6 +91,14 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val smsApi = retrofit.create(SmsApi::class.java)
-        smsApi.saveSMSData(smsList as MutableList<SMSData>)
+        smsApi.saveSMSData(smsList as MutableList<SMSData>).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
+                // 서버 응답 처리
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                // 서버 요청 실패 처리
+            }
+        })
     }
 }
